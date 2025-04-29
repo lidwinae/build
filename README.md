@@ -11,4 +11,4 @@ Aplikasi ini adalah sebuah Build Collection Manager yang memungkinkan pengguna u
 
 ***
 
-Aplikasi ini adalah upgrade dari https://github.com/lidwinae/buildcollection, di mana yang sebelumnya masih menggunakan ArrayList (dummy) kini sudah menggunakan database SQLite Room. Aplikasi ini hanya memungkinkan mode Portrait karena akan kurang cocok jika build ditampilkan secara Landscape.
+Aplikasi ini adalah upgrade dari https://github.com/lidwinae/buildcollection, di mana yang sebelumnya masih menggunakan ArrayList (dummy) kini sudah menggunakan database SQLite Room. Aplikasi ini hanya memungkinkan mode Portrait karena akan kurang cocok jika build ditampilkan secara Landscape. Aplikasi ini memiliki fitur CRUD lengkap (Create, Read, Update, dan Delete), di mana pengguna bisa menambahkan build baru (membuat build baru), melihat (menampilkan) list tampilan seluruh build yang ada, meng-update atau edit build yang dimiliki pengguna pada "Your Collection", serta menghapus build yang dimiliki pengguna.
