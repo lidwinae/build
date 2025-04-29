@@ -1,95 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="300dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="20dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginEnd="20dp"
-    app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="4dp"
-    app:layout_constraintTop_toBottomOf="@+id/headerCard">
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="16dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TextView
+        android:id="@+id/tvCreate"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Edit Build:"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
-        <ImageView
-            android:id="@+id/ivItem"
-            android:layout_width="match_parent"
-            android:layout_height="170dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="10dp"
-            android:contentDescription="Pantheon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/pantheon" />
+    <EditText
+        android:id="@+id/etEditName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Nama Build"
+        android:inputType="text"/>
 
-        <TextView
-            android:id="@+id/tvItem"
+    <ImageView
+        android:id="@+id/ivEditPreview"
+        android:layout_width="350dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop" />
+
+    <Button
+        android:id="@+id/btnChangeImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:text="Ganti Gambar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnCancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:breakStrategy="simple"
-            android:ellipsize="none"
-            android:hyphenationFrequency="normal"
-            android:maxWidth="300dp"
-            android:scrollHorizontally="false"
-            android:singleLine="false"
-            android:text="Pantheon"
-            android:textColor="@color/black"
-            android:textSize="27sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivItem" />
+            android:layout_weight="1"
+            android:text="Batal"/>
 
         <Button
-            android:id="@+id/btnTambah"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/green"
-            android:text="Tambah"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvItem" />
-
-        <Button
-            android:id="@+id/btnHapus"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/red"
-            android:text="Hapus"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvItem" />
-
-        <Button
-            android:id="@+id/btnEdit"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/yellow"
-            android:text="Edit"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnHapus"
-            app:layout_constraintTop_toBottomOf="@+id/tvItem" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+            android:id="@+id/btnSave"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Simpan"/>
+    </LinearLayout>
+</LinearLayout>
