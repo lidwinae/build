@@ -7,7 +7,8 @@ Aplikasi ini adalah sebuah Build Collection Manager yang memungkinkan pengguna u
 1. Melihat build collection yang ada pada "Available Collection" (made by lidwinae)
 2. Menambahkan build collection yang sudah ada pada Available Collection ke build collection pribadi atau personal pada "Your Collection"
 3. Menambahkan build baru dengan nama dan gambar baru (upload gambar) oleh pengguna yang juga menyediakan gambar template gambar1 dan gambar2 pada drawable jika pengguna tidak upload gambar
-4. Menghapus build collection pribadi pada "Your Collection"
+4. Mengedit / update YourCollection oleh pengguna
+5. Menghapus build collection pribadi pada "Your Collection"
 
 ***
 
