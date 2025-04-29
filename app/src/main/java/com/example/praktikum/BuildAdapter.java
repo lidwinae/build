@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.praktikum.databinding.ItemDataBinding;
+import com.example.praktikum.databinding.ItemBuildBinding;
 import java.util.List;
 
 public class BuildAdapter extends RecyclerView.Adapter<BuildAdapter.BuildViewHolder> {
@@ -24,10 +24,15 @@ public class BuildAdapter extends RecyclerView.Adapter<BuildAdapter.BuildViewHol
         this.listener = listener;
     }
 
+    public void updateData(List<BuildItem> newItems) {
+        this.buildItems = newItems;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public BuildViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemDataBinding binding = ItemDataBinding.inflate(
+        ItemBuildBinding binding = ItemBuildBinding.inflate(
                 LayoutInflater.from(parent.getContext()),
                 parent,
                 false
@@ -69,9 +74,9 @@ public class BuildAdapter extends RecyclerView.Adapter<BuildAdapter.BuildViewHol
     }
 
     public static class BuildViewHolder extends RecyclerView.ViewHolder {
-        ItemDataBinding binding;
+        ItemBuildBinding binding;
 
-        public BuildViewHolder(ItemDataBinding binding) {
+        public BuildViewHolder(ItemBuildBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

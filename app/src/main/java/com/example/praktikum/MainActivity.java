@@ -1,26 +1,19 @@
+// MainActivity.java
 package com.example.praktikum;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import com.example.praktikum.databinding.ActivityMainBinding;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements BuildAdapter.OnBuildClickListener {
     private ActivityMainBinding binding;
     private BuildAdapter availableAdapter;
     private BuildAdapter collectionAdapter;
-    private List<BuildItem> availableItems = new ArrayList<>();
-    private List<BuildItem> collectionItems = new ArrayList<>();
+    private DatabaseHelper dbHelper;
     private boolean useGambar1 = true;
-
-    // Key untuk menyimpan state
-    private static final String KEY_AVAILABLE_ITEMS = "available_items";
-    private static final String KEY_COLLECTION_ITEMS = "collection_items";
-    private static final String KEY_USE_GAMBAR1 = "use_gambar1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,31 +21,23 @@ public class MainActivity extends AppCompatActivity implements BuildAdapter.OnBu
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Cek jika ada saved state
-        if (savedInstanceState != null) {
-            // Restore data dari saved state
-            availableItems = savedInstanceState.getParcelableArrayList(KEY_AVAILABLE_ITEMS);
-            collectionItems = savedInstanceState.getParcelableArrayList(KEY_COLLECTION_ITEMS);
-            useGambar1 = savedInstanceState.getBoolean(KEY_USE_GAMBAR1);
-        } else {
-            // Inisialisasi data default jika tidak ada saved state
-            initializeAvailableItems();
+        // Inisialisasi database helper
+        dbHelper = new DatabaseHelper(this);
+
+        // Inisialisasi data default jika database kosong
+        if (dbHelper.getAllBuildItems().isEmpty()) {
+            initializeDefaultItems();
         }
 
         setupRecyclerViews();
         setupAddButton();
     }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        // Simpan state saat rotasi layar
-        outState.putParcelableArrayList(KEY_AVAILABLE_ITEMS, new ArrayList<>(availableItems));
-        outState.putParcelableArrayList(KEY_COLLECTION_ITEMS, new ArrayList<>(collectionItems));
-        outState.putBoolean(KEY_USE_GAMBAR1, useGambar1);
-    }
-
     private void setupRecyclerViews() {
+        // Dapatkan data dari database
+        List<BuildItem> availableItems = dbHelper.getBuildItemsByAvailability(true);
+        List<BuildItem> collectionItems = dbHelper.getBuildItemsByAvailability(false);
+
         // Setup RecyclerView Available (horizontal)
         availableAdapter = new BuildAdapter(availableItems, true, this);
         binding.rvAvailable.setLayoutManager(new LinearLayoutManager(
@@ -73,35 +58,51 @@ public class MainActivity extends AppCompatActivity implements BuildAdapter.OnBu
                 useGambar1 = !useGambar1;
 
                 BuildItem newItem = new BuildItem(input, imageRes, false);
-                collectionItems.add(newItem);
-                collectionAdapter.notifyItemInserted(collectionItems.size() - 1);
+                dbHelper.addBuildItem(newItem);
+
+                // Refresh RecyclerView
+                refreshData();
                 binding.etInput.setText("");
             }
         });
     }
 
-    private void initializeAvailableItems() {
-        availableItems.add(new BuildItem("Pantheon", R.drawable.pantheon, true));
-        availableItems.add(new BuildItem("Joglo", R.drawable.joglo, true));
-        availableItems.add(new BuildItem("Modern", R.drawable.modern, true));
+    private void initializeDefaultItems() {
+        dbHelper.addBuildItem(new BuildItem("Pantheon", R.drawable.pantheon, true));
+        dbHelper.addBuildItem(new BuildItem("Joglo", R.drawable.joglo, true));
+        dbHelper.addBuildItem(new BuildItem("Modern", R.drawable.modern, true));
     }
 
     @Override
     public void onAddClick(BuildItem item) {
-        availableItems.remove(item);
-        collectionItems.add(item);
-        availableAdapter.notifyDataSetChanged();
-        collectionAdapter.notifyDataSetChanged();
+        // Update status item menjadi tidak tersedia (pindah ke koleksi)
+        dbHelper.updateBuildItemAvailability(item, false);
+        refreshData();
     }
 
     @Override
     public void onDeleteClick(BuildItem item) {
-        collectionItems.remove(item);
-        collectionAdapter.notifyDataSetChanged();
-
+        // Jika item awalnya available, kembalikan statusnya
         if (item.isAvailable()) {
-            availableItems.add(item);
-            availableAdapter.notifyDataSetChanged();
+            dbHelper.updateBuildItemAvailability(item, true);
+        } else {
+            // Jika tidak, hapus item
+            dbHelper.deleteBuildItem(item);
         }
+        refreshData();
+    }
+
+    private void refreshData() {
+        List<BuildItem> availableItems = dbHelper.getBuildItemsByAvailability(true);
+        List<BuildItem> collectionItems = dbHelper.getBuildItemsByAvailability(false);
+
+        availableAdapter.updateData(availableItems);
+        collectionAdapter.updateData(collectionItems);
+    }
+
+    @Override
+    protected void onDestroy() {
+        dbHelper.close();
+        super.onDestroy();
     }
 }
