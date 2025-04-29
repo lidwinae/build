@@ -1,58 +1,82 @@
 package com.example.praktikum;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.ColumnInfo;
 
-public class BuildItem implements Parcelable {
+@Entity(tableName = "build_items")
+public class BuildItem {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    @ColumnInfo(name = "name")
     private String name;
+
+    @ColumnInfo(name = "image_res")
     private int imageRes;
+
+    @ColumnInfo(name = "is_available")
     private boolean isAvailable;
 
-    public BuildItem(String name, int imageRes, boolean isAvailable) {
+    @ColumnInfo(name = "is_default")
+    private boolean isDefault;
+
+    @ColumnInfo(name = "image_path")
+    private String imagePath; // Untuk menyimpan path gambar yang diupload
+
+    public BuildItem(String name, int imageRes, boolean isAvailable, boolean isDefault) {
         this.name = name;
         this.imageRes = imageRes;
         this.isAvailable = isAvailable;
+        this.isDefault = isDefault;
     }
 
-    protected BuildItem(Parcel in) {
-        name = in.readString();
-        imageRes = in.readInt();
-        isAvailable = in.readByte() != 0;
+    // Getter dan Setter
+    public int getId() {
+        return id;
     }
 
-    public static final Creator<BuildItem> CREATOR = new Creator<BuildItem>() {
-        @Override
-        public BuildItem createFromParcel(Parcel in) {
-            return new BuildItem(in);
-        }
-
-        @Override
-        public BuildItem[] newArray(int size) {
-            return new BuildItem[size];
-        }
-    };
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getImageRes() {
         return imageRes;
     }
 
+    public void setImageRes(int imageRes) {
+        this.imageRes = imageRes;
+    }
+
     public boolean isAvailable() {
         return isAvailable;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public void setAvailable(boolean available) {
+        isAvailable = available;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeInt(imageRes);
-        dest.writeByte((byte) (isAvailable ? 1 : 0));
+    public boolean isDefault() {
+        return isDefault;
+    }
+
+    public void setDefault(boolean aDefault) {
+        isDefault = aDefault;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }

@@ -36,8 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
             android:breakStrategy="simple"
             android:ellipsize="none"
             android:hyphenationFrequency="normal"
@@ -48,8 +46,6 @@
             android:textColor="@color/black"
             android:textSize="27sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnTambah"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivItem" />
 
@@ -61,11 +57,11 @@
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="10dp"
             android:backgroundTint="@color/green"
-            android:textColor="@color/white"
             android:text="Tambah"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivItem" />
+            app:layout_constraintTop_toBottomOf="@+id/tvItem" />
 
         <Button
             android:id="@+id/btnHapus"
@@ -75,11 +71,25 @@
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="10dp"
             android:backgroundTint="@color/red"
-            android:textColor="@color/white"
             android:text="Hapus"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivItem" />
+            app:layout_constraintTop_toBottomOf="@+id/tvItem" />
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/yellow"
+            android:text="Edit"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnHapus"
+            app:layout_constraintTop_toBottomOf="@+id/tvItem" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
