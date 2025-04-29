@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Nama Build"
+        android:textColor="@color/black"
         android:inputType="text"/>
 
     <ImageView
@@ -37,6 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/white"
         android:text="Ganti Gambar"/>
 
     <LinearLayout
@@ -50,13 +53,19 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Batal"/>
+            android:layout_marginEnd="8dp"
+            android:text="Batal"
+            android:backgroundTint="@color/gray"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/btnSave"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="@color/green"
+            android:textColor="@color/white"
             android:text="Simpan"/>
     </LinearLayout>
 </LinearLayout>
