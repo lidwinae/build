@@ -6,9 +6,9 @@
 Aplikasi ini adalah sebuah Build Collection Manager yang memungkinkan pengguna untuk:
 1. Melihat build collection yang ada pada "Available Collection" (made by lidwinae)
 2. Menambahkan build collection yang sudah ada pada Available Collection ke build collection pribadi atau personal pada "Your Collection"
-3. Menambahkan build baru dengan nama yang berbeda dan gambar template yang sudah disediakan: gambar1 dan gambar2 pada drawable
+3. Menambahkan build baru dengan nama dan gambar baru (upload gambar) oleh pengguna yang juga menyediakan gambar template gambar1 dan gambar2 pada drawable jika pengguna tidak upload gambar
 4. Menghapus build collection pribadi pada "Your Collection"
 
 ***
 
-Aplikasi ini menerapkan 2 recycler view untuk "Available Collection" yang datanya ditampilkan secara horizontal (kiri kanan) dan "Your Collection" yang datanya ditampilkan secara vertikal (atas bawah). Terdapat fitur Create, Read, dan Delete yang dibuat dengan menggunakan Array List.
+Aplikasi ini adalah upgrade dari https://github.com/lidwinae/buildcollection, di mana yang sebelumnya masih menggunakan ArrayList (dummy) kini sudah menggunakan database SQLite Room. Aplikasi ini hanya memungkinkan mode Portrait karena akan kurang cocok jika build ditampilkan secara Landscape.
