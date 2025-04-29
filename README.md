@@ -11,4 +11,4 @@ Aplikasi ini adalah sebuah Build Collection Manager yang memungkinkan pengguna u
 
 ***
 
-Aplikasi ini menerapkan 2 recycler view untuk "Available Collection" yang datanya ditampilkan secara horizontal (kiri kanan) dan "Your Collection" yang datanya ditampilkan secara vertikal (atas bawah). Terdapat fitur Create, Read, dan Delete yang sudah terhubung dengan database SQLite.
+Aplikasi ini menerapkan 2 recycler view untuk "Available Collection" yang datanya ditampilkan secara horizontal (kiri kanan) dan "Your Collection" yang datanya ditampilkan secara vertikal (atas bawah). Terdapat fitur Create, Read, dan Delete yang sudah terhubung dengan database SQLite. Aplikasi ini sama persis dengan https://github.com/lidwinae/buildcollection, namun tidak lagi menggunakan ArrayList, tetapi database SQLite.
